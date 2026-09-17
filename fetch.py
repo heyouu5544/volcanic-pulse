@@ -1,45 +1,41 @@
 # /// script
 # requires-python = ">=3.10"
-# dependencies = ["requests"]
 # ///
 
 """
-Fetch the numbers once, save the raw reply to data/, and never fetch again.
+Record the real Smithsonian GVP data-fetch situation for this project.
 
     uv run fetch.py
 
-Change URL and FILE. The default is the Hong Kong Observatory's daily mean
-temperature for 2026, so the template runs before you have touched it and you
-can see what a file looks like when it arrives. It is an example, not your
-phenomenon: handing it in unchanged is handing in nothing.
+The source file is the official confirmed Holocene eruptions spreadsheet from the
+Smithsonian GVP page. Automated download attempts are blocked with HTTP 403, so
+this script only checks whether the raw Excel file is already present locally.
 """
 
 from pathlib import Path
 
-import requests
-
-URL = ("https://data.weather.gov.hk/weatherAPI/opendata/opendata.php"
-       "?dataType=CLMTEMP&rformat=csv&station=HKO&year=2026")      # CHANGE ME
-FILE = "hko-daily-mean-temperature-2026.csv"                          # CHANGE ME: say what it is,
-                                                                      # keep the publisher's extension
+OFFICIAL_PAGE = "https://volcano.si.edu/search_eruption.cfm"
+FILE = "GVP_Eruption_List_Holocene_20260424.xlsx"
 HERE = Path(__file__).parent
 DATA = HERE / "data"
+TARGET = DATA / FILE
 
 
-def fetch(url, path):
-    """Ask for the file once. If it is already in data/, do nothing."""
-    if path.exists():
-        print(f"data/{path.name} is already here ({path.stat().st_size // 1024} KB). "
-              "Delete it to fetch again.")
-        return path
-    DATA.mkdir(exist_ok=True)
-    print(f"asking {url}")
-    reply = requests.get(url, timeout=60, headers={"User-Agent": "SD5913 PolyU student"})
-    reply.raise_for_status()
-    path.write_bytes(reply.content)      # the raw reply, byte for byte: what arrived is what gets committed
-    print(f"saved data/{path.name} ({path.stat().st_size // 1024} KB). Now: git add data")
-    return path
+def fetch():
+    """Check whether the raw Smithsonian Excel file is already present."""
+    if TARGET.exists():
+        print("raw data file already present")
+        print(f"path: {TARGET}")
+        print(f"size: {TARGET.stat().st_size} bytes")
+        return TARGET
+
+    print("Smithsonian blocks the scripted download with HTTP 403.")
+    print("Please download the Confirmed Holocene Eruptions spreadsheet manually")
+    print("from the official GVP page and place it in data/.")
+    print(f"official page: {OFFICIAL_PAGE}")
+    print(f"required file: {FILE}")
+    return None
 
 
 if __name__ == "__main__":
-    fetch(URL, DATA / FILE)
+    fetch()
