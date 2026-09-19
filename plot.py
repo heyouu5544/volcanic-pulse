@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 from openpyxl import load_workbook
 
 FILE = "GVP_Eruption_List_Holocene_20260424.xlsx"
-PICTURE = "volcanic_pulse_v4.png"
+PICTURE = "volcanic_pulse_v5.png"
 
 HERE = Path(__file__).parent
 DATA = HERE / "data" / FILE
@@ -97,7 +97,7 @@ def main():
     print(f"maximum yearly eruption count: {max_yearly_count}")
     print(f"year(s) with maximum yearly eruption count: {max_years}")
 
-    fig, ax = plt.subplots(figsize=(16, 9), facecolor="#efe9e2")
+    fig, ax = plt.subplots(figsize=(10, 16), facecolor="#efe9e2")
     ax.set_facecolor("#efe9e2")
 
     def pulse_color(vei_value):
@@ -118,7 +118,15 @@ def main():
             return "#a31d1d", "#d72626"
         return "#690d0d", "#8b1010"
 
-    angles = [i * (360 / 8) for i in range(8)]
+    def marker_size(vei_value):
+        if vei_value is None or str(vei_value).strip() in {"", "NULL", "null", "None"}:
+            return 90
+        try:
+            vei = float(vei_value)
+        except (TypeError, ValueError):
+            vei = 0.0
+        return 90 + min(320, max(0.0, vei) * 70)
+
     for year in sorted(year_counts):
         year_items = [item for item in eruptions if item["year"] == year]
         for idx, item in enumerate(year_items, start=1):
@@ -127,8 +135,14 @@ def main():
             vei = item["vei"]
 
             if vei is None or str(vei).strip() in {"", "NULL", "null", "None"}:
-                ax.add_patch(
-                    plt.Circle((x, y), radius=0.12, facecolor="none", edgecolor="#6b7280", linewidth=1.2, alpha=0.9)
+                ax.scatter(
+                    x, y,
+                    s=90,
+                    facecolors="none",
+                    edgecolors="#6b7280",
+                    linewidths=1.3,
+                    alpha=0.9,
+                    zorder=3,
                 )
                 continue
 
@@ -138,24 +152,14 @@ def main():
                 numeric_vei = 0.0
 
             core_edge, core_fill = pulse_color(vei)
-            core_radius = 0.16 + min(0.7, numeric_vei * 0.09)
-            ray_length = 0.18 + min(0.75, numeric_vei * 0.12)
-
-            for angle in angles[: 4 if numeric_vei < 2 else (6 if numeric_vei < 4 else 8)]:
-                theta = math.radians(angle)
-                x1 = x + math.cos(theta) * ray_length
-                y1 = y + math.sin(theta) * ray_length
-                ax.plot([x, x1], [y, y1], color=core_edge, linewidth=0.8, alpha=0.7)
-
-            ax.add_patch(
-                plt.Circle(
-                    (x, y),
-                    radius=core_radius,
-                    facecolor=core_fill,
-                    edgecolor=core_edge,
-                    linewidth=0.8,
-                    alpha=0.82,
-                )
+            ax.scatter(
+                x, y,
+                s=marker_size(numeric_vei),
+                facecolors=core_fill,
+                edgecolors=core_edge,
+                linewidths=0.9,
+                alpha=0.82,
+                zorder=4,
             )
 
     ax.set_xlim(1999, 2026)
