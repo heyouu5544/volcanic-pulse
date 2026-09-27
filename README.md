@@ -1,5 +1,7 @@
 # Volcanic Pulse
 
+**[▶ EXPLORE THE INTERACTIVE VISUALISATION](https://heyouu5544.github.io/volcanic-pulse/)**
+
 ![Volcanic Pulse](out/volcanic_pulse_v5.png)
 
 ## The phenomenon
