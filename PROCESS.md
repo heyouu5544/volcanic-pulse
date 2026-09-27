@@ -40,6 +40,12 @@ I therefore simplified the design and changed the time range to 2000–2025. The
 
 I also changed the aspect ratio and replaced stretched elliptical symbols with true circular markers. This made the image easier to read while keeping the same data logic.
 
+## Interactive extension
+
+For the interactive version, I kept the static PNG and the original plotting script instead of replacing them. I added a separate script that reads the same committed XLSX file and writes a self-contained HTML page. The page uses a year slider and play/pause animation so eruptions appear in chronological groups. Each source row still becomes exactly one circle, with no random jitter. The hover text keeps the volcano name, start year, VEI, and available start date visible.
+
+I kept the light volcanic-ash background, lava colour hierarchy, circular markers, and hollow symbols for unknown VEI. I rejected a CDN-only page because it would fail when opened offline. The generated page embeds its Plotly runtime, while the repository keeps only the generator and rebuilds the ignored `site/` output when needed.
+
 ## What I learned
 
 The most important part of this project was not only producing a final picture, but checking whether every step was actually supported by the data.

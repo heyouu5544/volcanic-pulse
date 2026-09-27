@@ -39,3 +39,9 @@ The image focuses on the rhythm, frequency, and relative intensity of eruptions 
 ```bash
 uv run fetch.py
 uv run plot.py
+uv run build_interactive.py
+```
+
+`fetch.py` checks that the original Smithsonian workbook is present. `plot.py` creates the static PNG. `build_interactive.py` creates `site/index.html`, a self-contained offline page with a year slider, play/pause animation, VEI filters, and hover details. It uses the same raw XLSX and does not download data when it runs.
+
+The repository also contains a GitHub Pages workflow. If Pages is enabled with GitHub Actions, it rebuilds the same page from `data/` after a push. The `site/` folder is generated output and is intentionally not committed.
