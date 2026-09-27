@@ -84,13 +84,13 @@
     .title-row {
       display: grid;
       grid-template-columns: minmax(0, 1.2fr) minmax(280px, 430px);
-      gap: 18px;
-      margin-bottom: 18px;
+      gap: 22px;
+      margin-bottom: 16px;
       align-items: end;
     }
 
     .hero {
-      padding: 12px 0 0 10px;
+      padding: 18px 0 0 10px;
       position: relative;
     }
 
@@ -98,7 +98,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       color: var(--muted);
       font-size: 9px;
       letter-spacing: 0.26em;
@@ -116,7 +116,7 @@
     .title-stack {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 12px;
     }
 
     .year-badge {
@@ -124,11 +124,11 @@
       align-items: baseline;
       gap: 10px;
       align-self: flex-start;
-      margin-top: 6px;
-      padding: 8px 10px;
-      border: 1px solid rgba(56,214,230,0.28);
-      background: rgba(56,214,230,0.05);
-      box-shadow: inset 0 0 20px rgba(56,214,230,0.04);
+      margin-top: 2px;
+      padding: 8px 12px;
+      border: 1px solid rgba(56,214,230,0.32);
+      background: linear-gradient(180deg, rgba(56,214,230,0.08), rgba(17,26,32,0.12));
+      box-shadow: inset 0 0 18px rgba(56,214,230,0.07), 0 0 18px rgba(56,214,230,0.08);
       backdrop-filter: blur(2px);
     }
 
@@ -150,7 +150,7 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 0;
+      gap: 3px;
       font-size: clamp(2.7rem, 6vw, 7.2rem);
       line-height: 0.82;
       letter-spacing: 0.08em;
@@ -172,7 +172,7 @@
       font-weight: 900;
       letter-spacing: 0.08em;
       color: var(--gold);
-      text-shadow: 0 0 28px rgba(245, 199, 110, 0.3);
+      text-shadow: 0 0 28px rgba(245, 199, 110, 0.28);
     }
 
     h1::after {
@@ -180,7 +180,7 @@
       position: absolute;
       left: 0;
       right: 6%;
-      bottom: -10px;
+      bottom: -12px;
       height: 1px;
       background: linear-gradient(90deg, var(--gold), rgba(245,199,110,0.18), transparent);
     }
@@ -191,13 +191,14 @@
       font-size: 11px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      max-width: 680px;
+      max-width: 690px;
+      line-height: 1.7;
     }
 
     .panel {
       background: linear-gradient(180deg, rgba(17,20,29,0.9), rgba(12,16,22,0.78));
       border: 1px solid var(--line);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 0 0 1px rgba(56,214,230,0.04);
       padding: 16px 16px 14px;
       position: relative;
       overflow: hidden;
@@ -215,14 +216,15 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(120px, 1fr));
       gap: 12px;
-      margin-top: 8px;
+      margin-top: 4px;
     }
 
     .metric {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(10,13,20,0.2));
       padding: 12px 10px;
-      min-height: 88px;
+      min-height: 90px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.015);
     }
 
     .metric-label {
@@ -239,6 +241,7 @@
       font-weight: 800;
       letter-spacing: 0.02em;
       color: var(--text);
+      text-shadow: 0 0 14px rgba(255,255,255,0.08);
     }
 
     .metric-value.gold { color: var(--gold); }
@@ -249,10 +252,10 @@
     .chart-wrap {
       position: relative;
       border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(10,12,18,0.8), rgba(9,11,16,0.9));
-      min-height: 820px;
+      background: linear-gradient(180deg, rgba(10,12,18,0.82), rgba(9,11,16,0.96));
+      min-height: 0;
       overflow: hidden;
-      box-shadow: inset 0 0 25px rgba(56,214,230,0.04);
+      box-shadow: inset 0 0 25px rgba(56,214,230,0.06), 0 0 22px rgba(56,214,230,0.03);
     }
 
     .chart-wrap::before {
@@ -295,8 +298,23 @@
     svg {
       display: block;
       width: 100%;
-      height: 820px;
+      height: auto;
+      aspect-ratio: 1200 / 980;
       background: transparent;
+    }
+
+    .top-year-control {
+      position: relative;
+      z-index: 12;
+      margin: 0;
+      padding: 12px 14px 10px;
+      background: linear-gradient(180deg, rgba(17,20,28,0.82), rgba(13,16,22,0.76));
+      border-bottom: 1px solid var(--line);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+    }
+
+    .top-year-control .slider-wrap {
+      margin: 0;
     }
 
     .controls {
@@ -628,7 +646,7 @@
 
     @media (max-width: 980px) {
       .title-row, .controls { grid-template-columns: 1fr; }
-      .chart-wrap, svg { height: 720px; }
+      .chart-wrap { min-height: 0; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -681,13 +699,20 @@
     </div>
 
     <div class="chart-wrap">
+      <div class="top-year-control">
+        <div class="slider-wrap">
+          <div class="slider-label">Year</div>
+          <input id="top-year-slider" type="range" min="2000" max="2025" value="2025" step="1" />
+          <div id="year-value-top" class="year-num">2025</div>
+        </div>
+      </div>
       <div class="hud" aria-hidden="true">
         <span class="corner tl"></span>
         <span class="corner tr"></span>
         <span class="corner bl"></span>
         <span class="corner br"></span>
       </div>
-      <svg id="chart" viewBox="0 0 1200 820" role="img" aria-label="Interactive volcanic eruption timeline"></svg>
+      <svg id="chart" viewBox="0 0 1200 1420" role="img" aria-label="Interactive volcanic eruption timeline"></svg>
       <div id="tooltip" class="tooltip" role="status" aria-live="polite"></div>
     </div>
 
@@ -748,7 +773,7 @@
 
     <div class="footer-note">
       <span>Source: Smithsonian GVP / Confirmed Holocene eruptions</span>
-      <span>Offline self-contained HTML • SVG export • no geospatial map</span>
+      <span>Offline self-contained HTML — SVG export — no geospatial map</span>
     </div>
   </div>
 
@@ -757,9 +782,12 @@
     const YEAR_MIN = 2000;
     const YEAR_MAX = 2025;
     const FULL_VIEW = 1200;
-    const FULL_HEIGHT = 820;
-    const CENTER_X = 610;
-    const CENTER_Y = 420;
+    const FULL_HEIGHT = 980;
+    const CENTER_X = FULL_VIEW / 2;
+    const CENTER_Y = FULL_HEIGHT / 2;
+    const CHART_TOP = 150;
+    const CHART_BOTTOM = 820;
+    const YEAR_COLUMN_GAP = 40;
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const state = {
@@ -771,6 +799,17 @@
       speed: 1,
       selectedId: null,
       currentVisible: []
+    };
+
+    const chartRefs = {
+      svg: null,
+      background: null,
+      labelLayer: null,
+      pointLayer: null,
+      yearLabels: new Map(),
+      circleMap: new Map(),
+      haloMap: new Map(),
+      visibleIds: new Set()
     };
 
     function isUnknown(vei) {
@@ -788,6 +827,35 @@
       return 'high';
     }
 
+    function getYearColumnX(year) {
+      return 120 + (year - YEAR_MIN) * YEAR_COLUMN_GAP;
+    }
+
+    function getLayoutSettings() {
+      const maxOrder = Math.max(1, ...DATA.map((item) => item.order));
+      const pointSpacing = Math.max(13.5, Math.min(16, (CHART_BOTTOM - CHART_TOP) / Math.max(1, maxOrder - 1)));
+      return { pointSpacing, chartTop: CHART_TOP, chartBottom: CHART_BOTTOM };
+    }
+
+    function getPointPosition(item) {
+      const { pointSpacing, chartTop } = getLayoutSettings();
+      const x = getYearColumnX(item.year);
+      const y = chartTop + (item.order - 1) * pointSpacing;
+      return { x, y, pointSpacing };
+    }
+
+    function getPointRadius(item) {
+      if (isUnknown(item.vei)) return 4.2;
+      if (item.group === 'low') return 4.1;
+      if (item.group === 'medium') return 5.8;
+      return 8.2;
+    }
+
+    function getHaloRadius(item) {
+      if (item.group !== 'high') return 0;
+      return clamp((item.vei || 4) * 2.6 + 13, 13, 26);
+    }
+
     function getVisibleEntries() {
       return DATA.filter((entry) => {
         if (!state.filters[entry.group]) return false;
@@ -796,19 +864,44 @@
       });
     }
 
+    function setYear(nextYear, options = {}) {
+      const safeYear = clamp(Number(nextYear), YEAR_MIN, YEAR_MAX);
+      const { manual = false } = options;
+      if (manual) {
+        clearTimeout(state.playTimer);
+        state.playing = false;
+        document.getElementById('play-toggle').textContent = 'Play';
+      }
+      state.year = safeYear;
+      updateYearLabel();
+      updateFilterCount();
+      renderChart();
+    }
+
     function updateYearLabel() {
-      document.getElementById('year-value').textContent = String(state.year);
-      document.getElementById('year-slider').value = String(state.year);
-      document.getElementById('status-text').textContent = state.mode === 'single' ? 'Single year' : 'Accumulated';
+      const yearText = document.getElementById('year-value');
+      const topYearText = document.getElementById('year-value-top');
+      const bottomSlider = document.getElementById('year-slider');
+      const topSlider = document.getElementById('top-year-slider');
+
+      if (yearText) yearText.textContent = String(state.year);
+      if (topYearText) topYearText.textContent = String(state.year);
+      if (bottomSlider) bottomSlider.value = String(state.year);
+      if (topSlider) topSlider.value = String(state.year);
+      const statusText = document.getElementById('status-text');
+      if (statusText) statusText.textContent = state.mode === 'single' ? 'Single year' : 'Accumulated';
       const currentYearLabel = document.getElementById('current-year-label');
       if (currentYearLabel) currentYearLabel.textContent = String(state.year);
     }
 
     function updateFilterCount() {
       const visible = getVisibleEntries();
-      document.getElementById('visible-count').textContent = String(visible.length);
-      document.getElementById('filter-count').textContent = `${visible.length} shown`;
-      document.getElementById('unknown-count').textContent = String(visible.filter(item => isUnknown(item.vei)).length);
+      const visibleCount = document.getElementById('visible-count');
+      const filterCount = document.getElementById('filter-count');
+      const unknownCount = document.getElementById('unknown-count');
+      if (visibleCount) visibleCount.textContent = String(visible.length);
+      if (filterCount) filterCount.textContent = `${visible.length} shown`;
+      if (unknownCount) unknownCount.textContent = String(visible.filter(item => isUnknown(item.vei)).length);
       state.currentVisible = visible;
     }
 
@@ -853,33 +946,123 @@
       document.getElementById('tooltip').classList.remove('visible');
     }
 
-    function buildPoint(item, intro = false) {
+    function ensureChartStructure() {
+      const svg = document.getElementById('chart');
+      chartRefs.svg = svg;
+      svg.setAttribute('viewBox', `0 0 ${FULL_VIEW} ${FULL_HEIGHT}`);
+
+      if (!chartRefs.background) {
+        const background = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        background.dataset.layer = 'background';
+        const bgMarkup = `
+          <rect x="0" y="0" width="${FULL_VIEW}" height="${FULL_HEIGHT}" fill="rgba(9,11,16,0.15)" />
+          <g opacity="0.76">
+            <circle cx="610" cy="490" r="120" fill="none" stroke="rgba(56,214,230,0.12)" stroke-width="1" stroke-dasharray="3 8" />
+            <circle cx="610" cy="490" r="180" fill="none" stroke="rgba(56,214,230,0.10)" stroke-width="1" stroke-dasharray="2 10" />
+            <circle cx="610" cy="490" r="240" fill="none" stroke="rgba(245,199,110,0.10)" stroke-width="1" stroke-dasharray="4 8" />
+            <circle cx="610" cy="490" r="320" fill="none" stroke="rgba(56,214,230,0.07)" stroke-width="1" stroke-dasharray="2 12" />
+            <circle cx="610" cy="490" r="390" fill="none" stroke="rgba(245,199,110,0.05)" stroke-width="1" stroke-dasharray="2 14" />
+          </g>
+          <g opacity="0.38">
+            <path d="M 610 300 A 200 200 0 0 1 810 490" fill="none" stroke="rgba(56,214,230,0.22)" stroke-width="1" />
+            <path d="M 610 300 A 200 200 0 0 0 410 490" fill="none" stroke="rgba(245,199,110,0.16)" stroke-width="1" />
+            <path d="M 610 680 A 200 200 0 0 1 810 490" fill="none" stroke="rgba(245,199,110,0.14)" stroke-width="1" />
+            <path d="M 610 680 A 200 200 0 0 0 410 490" fill="none" stroke="rgba(56,214,230,0.14)" stroke-width="1" />
+          </g>
+        `;
+        background.innerHTML = bgMarkup;
+        svg.appendChild(background);
+        chartRefs.background = background;
+      }
+
+      if (!chartRefs.labelLayer) {
+        const labelLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        labelLayer.dataset.layer = 'labels';
+        svg.appendChild(labelLayer);
+        chartRefs.labelLayer = labelLayer;
+        for (let year = YEAR_MIN; year <= YEAR_MAX; year += 1) {
+          const x = getYearColumnX(year);
+          const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          label.setAttribute('x', String(x));
+          label.setAttribute('y', String(CHART_TOP - 64));
+          label.setAttribute('fill', 'rgba(196,204,214,0.8)');
+          label.setAttribute('font-size', '10');
+          label.setAttribute('font-weight', '700');
+          label.setAttribute('text-anchor', 'middle');
+          label.setAttribute('letter-spacing', '2');
+          label.textContent = String(year);
+          labelLayer.appendChild(label);
+          chartRefs.yearLabels.set(year, label);
+        }
+      }
+
+      if (!chartRefs.pointLayer) {
+        const pointLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        pointLayer.dataset.layer = 'points';
+        svg.appendChild(pointLayer);
+        chartRefs.pointLayer = pointLayer;
+      }
+
+      const currentX = getYearColumnX(state.year);
+      const rect = document.querySelector('[data-year-band]') || document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('data-year-band', 'true');
+      rect.setAttribute('x', String(currentX - 24));
+      rect.setAttribute('y', String(CHART_TOP - 26));
+      rect.setAttribute('width', '48');
+      rect.setAttribute('height', String(CHART_BOTTOM - CHART_TOP + 90));
+      rect.setAttribute('rx', '18');
+      rect.setAttribute('fill', 'rgba(245,199,110,0.06)');
+      rect.setAttribute('stroke', 'rgba(245,199,110,0.18)');
+      rect.setAttribute('stroke-width', '1');
+      if (!rect.parentNode) {
+        chartRefs.background.appendChild(rect);
+      }
+    }
+
+    function updateYearLabels() {
+      const currentYear = clamp(state.year, YEAR_MIN, YEAR_MAX);
+      chartRefs.yearLabels.forEach((label, year) => {
+        label.setAttribute('fill', year === currentYear ? 'rgba(245,199,110,0.9)' : 'rgba(196,204,214,0.8)');
+        label.setAttribute('font-weight', year === currentYear ? '800' : '700');
+      });
+      const rect = chartRefs.background.querySelector('[data-year-band]');
+      if (rect) {
+        const currentX = getYearColumnX(currentYear);
+        rect.setAttribute('x', String(currentX - 24));
+      }
+    }
+
+    function createCircleNode(item) {
       const group = item.group;
       const color = group === 'low' ? '#F5C76E' : group === 'medium' ? '#FF8C42' : group === 'high' ? '#FF593B' : 'rgba(0,0,0,0)';
-      const radius = isUnknown(item.vei) ? 5.2 : clamp(4.6 + item.vei * 2.7, 4.8, 17.5);
-      const x = 90 + (item.year - YEAR_MIN) * 40 + (item.order - 1) * 2.2;
-      const y = 690 - ((item.order - 1) * 9.5) + (item.year - YEAR_MIN) * 0.6;
+      const radius = getPointRadius(item);
+      const pos = getPointPosition(item);
 
       const halo = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      const haloRadius = group === 'high' ? clamp(14 + (item.vei || 4) * 2.6, 14, 30) : 0;
-      halo.setAttribute('cx', intro ? CENTER_X : x);
-      halo.setAttribute('cy', intro ? CENTER_Y : y);
+      const haloRadius = getHaloRadius(item);
+      halo.setAttribute('cx', String(pos.x));
+      halo.setAttribute('cy', String(pos.y));
       halo.setAttribute('r', String(haloRadius));
       halo.setAttribute('fill', 'none');
       halo.setAttribute('stroke', group === 'high' ? 'rgba(255, 130, 78, 0.72)' : 'transparent');
       halo.setAttribute('stroke-width', group === 'high' ? String(0.9 + (item.vei || 4) * 0.3) : '0');
-      halo.setAttribute('opacity', group === 'high' ? String(0.35 + (item.vei || 4) * 0.08) : '0');
+      halo.setAttribute('opacity', group === 'high' ? String(0.38 + (item.vei || 4) * 0.09) : '0');
       halo.setAttribute('filter', group === 'high' ? 'drop-shadow(0 0 10px rgba(255, 129, 77, 0.85))' : 'none');
+      halo.style.pointerEvents = 'none';
+      halo.style.transition = 'opacity 0.22s ease';
 
       const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      circle.setAttribute('cx', intro ? CENTER_X : x);
-      circle.setAttribute('cy', intro ? CENTER_Y : y);
+      circle.setAttribute('cx', String(pos.x));
+      circle.setAttribute('cy', String(pos.y));
       circle.setAttribute('r', String(radius));
       circle.setAttribute('fill', group === 'unknown' ? 'rgba(0,0,0,0)' : color);
       circle.setAttribute('stroke', group === 'unknown' ? '#8C97A9' : color);
       circle.setAttribute('stroke-width', group === 'unknown' ? '1.5' : '0.9');
-      circle.setAttribute('opacity', group === 'unknown' ? '0.95' : '0.9');
+      circle.setAttribute('opacity', '0.9');
       circle.style.cursor = 'pointer';
+      circle.style.transformOrigin = 'center';
+      circle.style.transform = 'scale(0.9)';
+      circle.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
       circle.dataset.id = item.id;
       circle.dataset.group = item.group;
       circle.dataset.year = String(item.year);
@@ -887,7 +1070,7 @@
       circle.dataset.volcano = item.volcano;
       circle.dataset.date = item.date;
       circle.dataset.number = item.eruption_number || 'n/a';
-      circle.style.transition = 'all 0.65s cubic-bezier(0.2,0.8,0.2,1)';
+
       circle.addEventListener('mouseenter', (event) => {
         showTooltip(event, `
           <div class="tooltip-head">${escape(item.volcano)}</div>
@@ -904,25 +1087,91 @@
       });
       circle.addEventListener('mouseleave', hideTooltip);
       circle.addEventListener('click', () => {
-        if (item.group !== 'high' && item.group !== 'medium') {
-          state.selectedId = item.id;
-          renderDetailPanel();
-          return;
-        }
         state.selectedId = item.id;
         renderDetailPanel();
-        showImpactPulse(x, y, item.group);
-        spawnImpactParticles(x, y, item.group);
+        const point = getPointPosition(item);
+        if (item.group === 'high' || item.group === 'medium') {
+          showImpactPulse(point.x, point.y, item.group);
+          spawnImpactParticles(point.x, point.y, item.group);
+        }
       });
-      if (!intro) {
-        requestAnimationFrame(() => {
-          circle.setAttribute('cx', x);
-          circle.setAttribute('cy', y);
-          halo.setAttribute('cx', x);
-          halo.setAttribute('cy', y);
-        });
+
+      chartRefs.pointLayer.appendChild(halo);
+      chartRefs.pointLayer.appendChild(circle);
+      chartRefs.circleMap.set(item.id, circle);
+      chartRefs.haloMap.set(item.id, halo);
+
+      return { circle, halo };
+    }
+
+    function setPointState(item, circle, halo) {
+      const pos = getPointPosition(item);
+      const radius = getPointRadius(item);
+      const activeYear = item.year === state.year;
+      const visible = item.group && state.filters[item.group] && (state.mode !== 'single' ? item.year <= state.year : item.year === state.year);
+      circle.setAttribute('cx', String(pos.x));
+      circle.setAttribute('cy', String(pos.y));
+      circle.setAttribute('r', String(radius));
+      circle.setAttribute('fill', item.group === 'unknown' ? 'rgba(0,0,0,0)' : item.group === 'low' ? '#F5C76E' : item.group === 'medium' ? '#FF8C42' : '#FF593B');
+      circle.setAttribute('stroke', item.group === 'unknown' ? '#8C97A9' : activeYear ? '#EAFBFF' : item.group === 'low' ? '#F5C76E' : item.group === 'medium' ? '#FF8C42' : '#FF593B');
+      circle.setAttribute('stroke-width', item.group === 'unknown' ? '1.5' : activeYear ? '1.6' : '0.9');
+      circle.style.filter = activeYear ? 'drop-shadow(0 0 12px rgba(255, 204, 124, 0.92)) drop-shadow(0 0 22px rgba(90, 198, 255, 0.65))' : 'none';
+      circle.style.opacity = visible ? '1' : '0';
+      circle.style.transform = visible ? 'scale(1)' : 'scale(0.82)';
+      circle.style.pointerEvents = visible ? 'auto' : 'none';
+      circle.style.display = visible ? 'block' : 'none';
+      if (halo) {
+        halo.setAttribute('cx', String(pos.x));
+        halo.setAttribute('cy', String(pos.y));
+        halo.setAttribute('r', String(getHaloRadius(item)));
+        halo.setAttribute('opacity', item.group === 'high' && visible ? String(0.38 + (item.vei || 4) * 0.09) : '0');
+        halo.style.display = item.group === 'high' && visible ? 'block' : 'none';
       }
-      return { halo, circle };
+    }
+
+    function syncVisiblePoints() {
+      const visibleEntries = getVisibleEntries();
+      const desiredIds = new Set(visibleEntries.map(item => item.id));
+      const previousIds = new Set(chartRefs.visibleIds || []);
+
+      visibleEntries.forEach((item) => {
+        let circleNode = chartRefs.circleMap.get(item.id);
+        if (!circleNode) {
+          const created = createCircleNode(item);
+          circleNode = created.circle;
+        }
+        const halo = chartRefs.haloMap.get(item.id);
+        const shouldAnimateEnter = !previousIds.has(item.id);
+        const shouldAnimateExit = previousIds.has(item.id) && !desiredIds.has(item.id);
+        if (shouldAnimateExit) return;
+        setPointState(item, circleNode, halo);
+        if (shouldAnimateEnter) {
+          circleNode.style.opacity = '0';
+          circleNode.style.transform = 'scale(0.9)';
+          requestAnimationFrame(() => {
+            circleNode.style.opacity = '1';
+            circleNode.style.transform = 'scale(1)';
+          });
+        }
+      });
+
+      for (const id of previousIds) {
+        if (!desiredIds.has(id)) {
+          const circle = chartRefs.circleMap.get(id);
+          if (circle) {
+            circle.style.opacity = '0';
+            circle.style.transform = 'scale(0.82)';
+            circle.style.pointerEvents = 'none';
+            circle.style.display = 'none';
+            const halo = chartRefs.haloMap.get(id);
+            if (halo) {
+              halo.style.display = 'none';
+            }
+          }
+        }
+      }
+
+      chartRefs.visibleIds = desiredIds;
     }
 
     function spawnImpactParticles(x, y, group) {
@@ -940,6 +1189,7 @@
         particle.setAttribute('r', String(2 + Math.random() * 2.5));
         particle.setAttribute('fill', index % 2 === 0 ? '#F5C76E' : '#FF8C42');
         particle.setAttribute('opacity', '0.9');
+        particle.style.transition = 'opacity 0.24s ease';
         svg.appendChild(particle);
         const duration = 560 + Math.random() * 320;
         requestAnimationFrame(() => {
@@ -964,8 +1214,7 @@
       ring.setAttribute('stroke', ringColor);
       ring.setAttribute('stroke-width', '2');
       ring.setAttribute('opacity', '0.9');
-      ring.style.transformOrigin = `${x}px ${y}px`;
-      ring.style.filter = 'drop-shadow(0 0 12px rgba(255,89,59,0.8))';
+      ring.style.transition = 'opacity 0.22s ease, r 0.22s ease';
       svg.appendChild(ring);
       const burst = [0.6, 1.0, 1.4, 1.8].map((scale, idx) => {
         const extra = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
@@ -976,6 +1225,7 @@
         extra.setAttribute('stroke', ringColor);
         extra.setAttribute('stroke-width', '1');
         extra.setAttribute('opacity', String(0.7 - idx * 0.18));
+        extra.style.transition = 'opacity 0.22s ease';
         svg.appendChild(extra);
         return extra;
       });
@@ -985,7 +1235,6 @@
         setTimeout(() => {
           element.setAttribute('r', String(10 + index * 8));
           element.setAttribute('opacity', '0');
-          element.style.transition = 'all 0.9s ease-out';
         }, start);
       });
       setTimeout(() => {
@@ -994,162 +1243,80 @@
     }
 
     function renderChart() {
-      const svg = document.getElementById('chart');
-      svg.innerHTML = '';
-      const background = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-      const scanYear = clamp(state.year, YEAR_MIN, YEAR_MAX);
-      const scanX = 90 + (scanYear - YEAR_MIN) * 40;
-      const bgMarkup = `
-        <rect x="0" y="0" width="1200" height="820" fill="rgba(9,11,16,0.15)" />
-        <g opacity="0.72">
-          <circle cx="610" cy="420" r="120" fill="none" stroke="rgba(56,214,230,0.12)" stroke-width="1" stroke-dasharray="3 8" />
-          <circle cx="610" cy="420" r="180" fill="none" stroke="rgba(56,214,230,0.10)" stroke-width="1" stroke-dasharray="2 10" />
-          <circle cx="610" cy="420" r="240" fill="none" stroke="rgba(245,199,110,0.10)" stroke-width="1" stroke-dasharray="4 8" />
-          <circle cx="610" cy="420" r="320" fill="none" stroke="rgba(56,214,230,0.07)" stroke-width="1" stroke-dasharray="2 12" />
-          <circle cx="610" cy="420" r="390" fill="none" stroke="rgba(245,199,110,0.05)" stroke-width="1" stroke-dasharray="2 14" />
-        </g>
-        <g opacity="0.38">
-          <path d="M 610 250 A 200 200 0 0 1 810 420" fill="none" stroke="rgba(56,214,230,0.22)" stroke-width="1" />
-          <path d="M 610 250 A 200 200 0 0 0 410 420" fill="none" stroke="rgba(245,199,110,0.16)" stroke-width="1" />
-          <path d="M 610 590 A 200 200 0 0 1 810 420" fill="none" stroke="rgba(245,199,110,0.14)" stroke-width="1" />
-          <path d="M 610 590 A 200 200 0 0 0 410 420" fill="none" stroke="rgba(56,214,230,0.14)" stroke-width="1" />
-        </g>
-        <g opacity="0.72">
-          <line x1="100" y1="700" x2="1110" y2="700" stroke="rgba(255,255,255,0.08)" />
-          <line x1="140" y1="110" x2="140" y2="700" stroke="rgba(255,255,255,0.07)" />
-          <line x1="1060" y1="110" x2="1060" y2="700" stroke="rgba(255,255,255,0.07)" />
-        </g>
-        <line x1="${scanX}" y1="88" x2="${scanX}" y2="705" stroke="rgba(56,214,230,0.9)" stroke-width="1.2" stroke-dasharray="5 9" filter="drop-shadow(0 0 10px rgba(56,214,230,0.8))" />
-        <text x="${scanX}" y="52" fill="rgba(245,199,110,0.9)" font-size="10" font-weight="700" letter-spacing="3" text-anchor="middle">${scanYear}</text>
-      `;
-      background.innerHTML = bgMarkup;
-      svg.appendChild(background);
+      ensureChartStructure();
+      const currentYear = clamp(state.year, YEAR_MIN, YEAR_MAX);
+      updateYearLabels();
+      syncVisiblePoints();
 
-      const visible = getVisibleEntries();
-      const bounds = {
-        minYear: YEAR_MIN,
-        maxYear: YEAR_MAX,
-        minOrder: 1,
-        maxOrder: Math.max(1, ...visible.map(item => item.order))
-      };
-
-      for (let year = YEAR_MIN; year <= YEAR_MAX; year += 1) {
-        const x = 90 + (year - YEAR_MIN) * 40;
-        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        label.setAttribute('x', String(x));
-        label.setAttribute('y', '740');
-        label.setAttribute('fill', 'rgba(196,204,214,0.8)');
-        label.setAttribute('font-size', '10');
-        label.setAttribute('font-weight', '700');
-        label.setAttribute('text-anchor', 'middle');
-        label.setAttribute('letter-spacing', '2');
-        label.textContent = String(year);
-        svg.appendChild(label);
-      }
-
-      for (let step = 0; step <= 18; step += 1) {
-        const y = 695 - step * 25;
-        const arc = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        arc.setAttribute('x1', '120');
-        arc.setAttribute('x2', '1080');
-        arc.setAttribute('y1', String(y));
-        arc.setAttribute('y2', String(y));
-        arc.setAttribute('stroke', 'rgba(255,255,255,0.04)');
-        svg.appendChild(arc);
-      }
-
-      visible.forEach((item) => {
-        const parts = buildPoint(item, true);
-        svg.appendChild(parts.halo);
-        svg.appendChild(parts.circle);
+      const activeVisible = getVisibleEntries();
+      activeVisible.forEach((item) => {
+        const circle = chartRefs.circleMap.get(item.id);
+        if (!circle) return;
+        const isCurrent = item.year === currentYear;
+        circle.setAttribute('stroke', item.group === 'unknown' ? '#8C97A9' : isCurrent ? '#EAFBFF' : item.group === 'low' ? '#F5C76E' : item.group === 'medium' ? '#FF8C42' : '#FF593B');
+        circle.setAttribute('stroke-width', item.group === 'unknown' ? '1.5' : isCurrent ? '1.6' : '0.9');
+        circle.style.filter = isCurrent ? 'drop-shadow(0 0 12px rgba(255, 204, 124, 0.92)) drop-shadow(0 0 22px rgba(90, 198, 255, 0.65))' : 'none';
       });
-
-      const introDelay = reduceMotion ? 0 : 180;
-      setTimeout(() => {
-        visible.forEach((item) => {
-          const circle = svg.querySelector(`circle[data-id="${item.id}"]`);
-          if (!circle) return;
-          const halo = circle.previousSibling;
-          const x = 90 + (item.year - YEAR_MIN) * 40 + (item.order - 1) * 2.2;
-          const y = 690 - ((item.order - 1) * 9.5) + (item.year - YEAR_MIN) * 0.6;
-          circle.setAttribute('cx', String(x));
-          circle.setAttribute('cy', String(y));
-          if (halo && halo.tagName === 'circle') {
-            halo.setAttribute('cx', String(x));
-            halo.setAttribute('cy', String(y));
-          }
-        });
-      }, introDelay);
 
       if (state.selectedId) {
         const selected = DATA.find((item) => item.id === state.selectedId);
         if (selected) {
-          const selectedCircle = svg.querySelector(`circle[data-id="${selected.id}"]`);
+          const selectedCircle = chartRefs.circleMap.get(selected.id);
           if (selectedCircle) {
+            const pos = getPointPosition(selected);
             const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            ring.setAttribute('cx', selectedCircle.getAttribute('cx'));
-            ring.setAttribute('cy', selectedCircle.getAttribute('cy'));
+            ring.setAttribute('cx', String(pos.x));
+            ring.setAttribute('cy', String(pos.y));
             ring.setAttribute('r', '14');
             ring.setAttribute('fill', 'none');
             ring.setAttribute('stroke', '#F5C76E');
             ring.setAttribute('stroke-width', '1.5');
             ring.setAttribute('opacity', '0.9');
             ring.setAttribute('stroke-dasharray', '3 6');
-            svg.appendChild(ring);
+            if (!ring.dataset.selected) {
+              ring.dataset.selected = 'true';
+              chartRefs.pointLayer.appendChild(ring);
+            }
+            ring.setAttribute('cx', String(pos.x));
+            ring.setAttribute('cy', String(pos.y));
           }
         }
       }
     }
 
-    function updatePlayback() {
-      const playing = state.playing;
-      document.getElementById('play-toggle').textContent = playing ? 'Pause' : 'Play';
-      if (playing && state.mode === 'accumulate') {
-        if (state.year >= YEAR_MAX) {
-          state.year = YEAR_MIN;
-        }
-      }
-      renderChart();
-      updateFilterCount();
-      updateYearLabel();
-    }
-
     function tickPlayback() {
       if (!state.playing) return;
-      state.year += 1;
-      if (state.year > YEAR_MAX) {
+      const nextYear = state.year + 1;
+      if (nextYear > YEAR_MAX) {
         state.year = YEAR_MAX;
         state.playing = false;
         document.getElementById('play-toggle').textContent = 'Play';
+        updateYearLabel();
+        updateFilterCount();
+        renderChart();
+        return;
       }
+      state.year = nextYear;
       updateYearLabel();
       updateFilterCount();
       renderChart();
-      if (state.playing) {
-        const interval = reduceMotion ? 180 : 700 / state.speed;
-        state.playTimer = setTimeout(tickPlayback, interval);
-      }
+      const interval = reduceMotion ? 180 : 700 / state.speed;
+      state.playTimer = setTimeout(tickPlayback, interval);
     }
 
     function handleFilterChange(event) {
       const { value } = event.target;
       state.filters[value] = event.target.checked;
-      renderChart();
       updateFilterCount();
+      renderChart();
       renderDetailPanel();
     }
 
     function bindControls() {
-      document.getElementById('year-slider').addEventListener('input', (event) => {
-        state.year = Number(event.target.value);
-        if (state.mode === 'single') {
-          renderChart();
-        } else {
-          renderChart();
-        }
-        updateYearLabel();
-        updateFilterCount();
-      });
+      const syncYear = (value, options = {}) => setYear(value, { ...options, manual: true });
+
+      document.getElementById('year-slider').addEventListener('input', (event) => syncYear(event.target.value));
+      document.getElementById('top-year-slider').addEventListener('input', (event) => syncYear(event.target.value));
 
       document.querySelectorAll('input[name="mode"]').forEach((input) => {
         input.addEventListener('change', () => {
@@ -1160,8 +1327,8 @@
             state.year = YEAR_MAX;
           }
           updateYearLabel();
-          renderChart();
           updateFilterCount();
+          renderChart();
         });
       });
 
@@ -1173,9 +1340,9 @@
             document.querySelector('input[name="mode"][value="accumulate"]').checked = true;
           }
           state.year = YEAR_MIN;
-          renderChart();
           updateYearLabel();
           updateFilterCount();
+          renderChart();
           const interval = reduceMotion ? 160 : 700 / state.speed;
           state.playTimer = setTimeout(tickPlayback, interval);
         } else {
@@ -1213,6 +1380,17 @@
       });
 
       document.getElementById('tooltip').addEventListener('mouseleave', hideTooltip);
+      document.addEventListener('keydown', (event) => {
+        if (event.target && ['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName)) return;
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          setYear(state.year - 1, { manual: true });
+        }
+        if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          setYear(state.year + 1, { manual: true });
+        }
+      });
     }
 
     function exportSvg() {
@@ -1239,8 +1417,10 @@
       const img = new Image();
       img.onload = () => {
         const canvas = document.createElement('canvas');
-        canvas.width = 2400;
-        canvas.height = 1640;
+        const viewBox = svg.viewBox.baseVal;
+        const scale = 2;
+        canvas.width = Math.round(viewBox.width * scale);
+        canvas.height = Math.round(viewBox.height * scale);
         const ctx = canvas.getContext('2d');
         ctx.fillStyle = '#090B10';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -1280,17 +1460,8 @@
       updateYearLabel();
       updateFilterCount();
       renderDetailPanel();
+      ensureChartStructure();
       renderChart();
-      setTimeout(() => {
-        const visible = getVisibleEntries();
-        visible.forEach((item) => {
-          const circle = document.querySelector(`circle[data-id="${item.id}"]`);
-          if (circle) {
-            circle.setAttribute('cx', String(90 + (item.year - YEAR_MIN) * 40 + (item.order - 1) * 2.2));
-            circle.setAttribute('cy', String(690 - ((item.order - 1) * 9.5) + (item.year - YEAR_MIN) * 0.6));
-          }
-        });
-      }, 120);
     }
 
     init();
